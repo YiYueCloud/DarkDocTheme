@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小孙同学</title>
+    <meta name="description" content="小孙同学的个人文档站">
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
+    <link rel="icon" href="./favicon.ico">
+
+    <!-- Docsify 核心 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" id="theme-link">
+    <link rel="stylesheet" href="./css/theme.css">
+
+    <!-- Viewer.js (图片查看器) -->
+    <link rel="stylesheet" href="./css/viewer.min.css">
+</head>
+
+<body>
+    <div id="app">加载中...</div>
+
+    <script>
+        window.$docsify = {
+            name: '小孙同学',
+            nameLink: '/',
+            repo: 'https://github.com/sun0225SUN/Awesome-Love-Code',
+            basePath: '/',
+
+            loadSidebar: true,
+            loadNavbar: true,
+            mergeNavbar: true,
+            maxLevel: 4,
+            subMaxLevel: 3,
+            autoHeader: true,
+
+            themeColor: '#74b9ff',
+
+            search: {
+                placeholder: '搜索文档...',
+                noData: '未找到结果',
+                depth: 4
+            },
+
+            emoji: true,
+            relativePath: true,
+            coverpage: false,
+
+            plugins: [
+                function (hook, vm) {
+                    // 每次路由切换完成后执行
+                    hook.doneEach(function () {
+                        // 底部版权（避免重复添加）
+                        var main = document.querySelector('.content');
+                        if (main && !document.querySelector('.docsify-footer')) {
+                            var footer = document.createElement('div');
+                            footer.className = 'docsify-footer';
+                            footer.innerHTML = '<p class="left">&copy; 2021 | BY <a href="https://sunguoqi.com/" target="_blank">SUNSHINE</a></p>' +
+                                '<p class="right"><a href="http://sunguoqi.com/" target="_blank">I am your sunshine</a></p>';
+                            main.appendChild(footer);
+                        }
+
+                        // 触发恋爱计时更新
+                        if (typeof lovetime === 'function') {
+                            lovetime();
+                        }
+
+                        // 为图片启用 viewer.js 点击查看
+                        if (typeof Viewer !== 'undefined') {
+                            var imgs = document.querySelectorAll('.content img:not(.emoji)');
+                            if (imgs.length > 0) {
+                                try {
+                                    new Viewer(imgs, {
+                                        navbar: false,
+                                        toolbar: false,
+                                        title: false
+                                    });
+                                } catch (e) {
+                                    // viewer 可能已被实例化
+                                }
+                            }
+                        }
+                    });
+                }
+            ],
+
+            markdown: {
+                renderer: {
+                    image: function (href, title, text) {
+                        var img = '<img src="' + href + '" class="n0ts-img"';
+                        if (title) img += ' alt="' + title + '"';
+                        if (text) img += ' alt="' + text + '"';
+                        img += '>';
+                        return img;
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Docsify 及其插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/emoji.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+
+    <!-- Viewer.js (图片查看) -->
+    <script src="./js/viewer.min.js"></script>
+
+    <!-- 恋爱计时 -->
+    <script src="./js/lovetime.js?v=2"></script>
+</body>
+
+</html>

@@ -1,0 +1,654 @@
+/* ============================================
+   DarkDocTheme — Docsify 深色主题
+   沿用原 "小孙同学" 静态页面外观
+   ============================================ */
+
+/* ---------- 全局变量 ---------- */
+:root {
+    --bg-primary: #21252b;
+    --bg-secondary: #282c34;
+    --bg-sidebar: #333842;
+    --bg-navbar: #21252b;
+    --text-primary: #9fb2bf;
+    --text-highlight: #e6e6e6;
+    --accent: #74b9ff;
+    --accent-hover: #8ac4ff;
+    --border-color: #181a1f;
+    --sidebar-width: 300px;
+    --navbar-height: 35px;
+    --tag-bg: #2c313a;
+}
+
+/* ---------- 基础全局样式 ---------- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: "Source Serif Pro", "Noto Serif SC", -apple-system, "SF UI Text",
+        "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-weight: 400;
+    scroll-behavior: smooth;
+}
+
+/* ---------- 滚动条 ---------- */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ---------- 链接 ---------- */
+a {
+    text-decoration: none;
+    color: var(--accent);
+    transition: all .3s;
+}
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: none;
+}
+
+/* ---------- 选中颜色 ---------- */
+::selection {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ---------- 顶部导航栏 (Docsify 默认 navbar 改) ---------- */
+.app-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    height: var(--navbar-height);
+    background-color: var(--bg-navbar);
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all .5s;
+}
+
+.app-nav.no-badge {
+    margin-right: 0;
+}
+
+.app-nav > ul {
+    display: flex;
+    align-items: center;
+    height: var(--navbar-height);
+    padding: 0;
+    margin: 0 0 0 50px;
+}
+
+.app-nav > ul::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('../favicon.ico') no-repeat center / contain;
+    margin-right: 10px;
+}
+
+.app-nav > ul > li {
+    height: var(--navbar-height);
+    line-height: var(--navbar-height);
+    margin: 0;
+    padding: 0;
+}
+
+.app-nav > ul > li > a {
+    display: block;
+    padding: 0 14px;
+    height: var(--navbar-height);
+    line-height: var(--navbar-height);
+    color: var(--text-primary);
+    font-size: 0.7rem;
+    transition: all .3s;
+    border: none;
+}
+
+.app-nav > ul > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-highlight);
+}
+
+/* 导航栏右侧汉堡菜单（小屏） */
+.app-nav > ul > li > a::before {
+    display: none;
+}
+
+/* ---------- 侧边栏 ---------- */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    width: var(--sidebar-width);
+    border-right: none;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+    overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: #535353;
+    border-radius: 2px;
+}
+
+/* 侧边栏品牌/标题 */
+.sidebar > h1 {
+    display: none;
+}
+
+/* 侧边栏个人资料区域 */
+.sidebar-profile {
+    text-align: center;
+    padding: 30px 20px 20px;
+    border-bottom: 2px solid var(--bg-primary);
+    margin-bottom: 15px;
+}
+
+.sidebar-profile .sidebar-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto 20px;
+}
+
+.sidebar-profile .sidebar-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: all .3s;
+    object-fit: cover;
+}
+
+.sidebar-profile .sidebar-avatar img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-profile h3 {
+    color: var(--text-highlight);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+    text-align: left;
+}
+
+.sidebar-profile p {
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    text-align: left;
+    padding-left: 19px;
+}
+
+/* 侧边栏导航链接 */
+.sidebar-nav {
+    padding: 0;
+}
+
+.sidebar-nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-nav ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-nav ul li a {
+    display: block;
+    padding: 10px 20px 10px 30px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    border-left: 3px solid transparent;
+    transition: all .3s;
+    position: relative;
+}
+
+.sidebar-nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent);
+    transition: all .3s;
+    margin-top: 5px;
+}
+
+.sidebar-nav ul li a:hover {
+    color: var(--text-highlight);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar-nav ul li a:hover::after {
+    width: 80%;
+}
+
+.sidebar-nav ul li.active > a {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: rgba(116, 185, 255, 0.05);
+}
+
+/* 侧边栏分组标题 (带 ** 的粗体) */
+.sidebar-nav ul li strong {
+    display: block;
+    padding: 12px 20px 5px 25px;
+    color: var(--text-highlight);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ---------- 主内容区 ---------- */
+.content {
+    background-color: var(--bg-secondary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding-top: var(--navbar-height);
+}
+
+.content::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
+}
+
+/* 内容区域自适应边距 */
+.markdown-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px 60px 80px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ---------- 标题 ---------- */
+.markdown-section h1,
+.markdown-section h2 {
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+    margin: 30px 0 20px;
+    color: var(--text-highlight);
+    font-weight: 400;
+}
+
+.markdown-section h1 {
+    font-size: 2rem;
+    border-left-width: 5px;
+}
+
+.markdown-section h2 {
+    font-size: 1.6rem;
+}
+
+.markdown-section h3,
+.markdown-section h4 {
+    color: var(--text-highlight);
+    font-weight: 400;
+    margin: 25px 0 15px;
+}
+
+.markdown-section h3 {
+    font-size: 1.3rem;
+}
+
+/* ---------- 段落 ---------- */
+.markdown-section p {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    cursor: default;
+}
+
+/* ---------- 引用块 ---------- */
+.markdown-section blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(116, 185, 255, 0.05);
+    padding: 12px 20px;
+    margin: 20px 0;
+    color: var(--text-primary);
+    border-radius: 0 6px 6px 0;
+}
+
+.markdown-section blockquote p {
+    margin-bottom: 0;
+    color: var(--text-primary);
+}
+
+/* ---------- 代码 ---------- */
+.markdown-section code {
+    background-color: var(--tag-bg);
+    color: #e6db74;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.markdown-section pre {
+    background-color: var(--tag-bg) !important;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.markdown-section pre code {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+/* ---------- 表格 ---------- */
+.markdown-section table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.markdown-section table thead {
+    background: var(--bg-sidebar);
+}
+
+.markdown-section table th,
+.markdown-section table td {
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    color: var(--text-primary);
+}
+
+.markdown-section table th {
+    color: var(--text-highlight);
+    font-weight: 500;
+}
+
+.markdown-section table tbody tr:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* ---------- 任务列表 ---------- */
+.markdown-section input[type="checkbox"] {
+    accent-color: var(--accent);
+}
+
+/* ---------- 水平线 ---------- */
+.markdown-section hr {
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+    margin: 30px 0;
+}
+
+/* ---------- 图片 ---------- */
+.markdown-section img {
+    max-width: 70%;
+    min-width: 300px;
+    max-height: 500px;
+    border-radius: 10px;
+    transition: all .3s;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+.markdown-section img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 图片说明（斜体包裹的图片下一行） */
+.markdown-section em {
+    display: block;
+    text-align: center;
+    color: var(--text-primary);
+    font-style: normal;
+    font-size: 0.85rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.markdown-section em::after {
+    content: ' ↑';
+}
+
+/* ---------- 按钮链接 ---------- */
+.markdown-section a.button,
+.markdown-section a[href*="github.com"] {
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: var(--accent);
+    color: white;
+    border-radius: 20px;
+    transition: all .3s;
+    margin: 20px 0;
+}
+
+.markdown-section a.button:hover,
+.markdown-section a[href*="github.com"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #74d3ff;
+    color: white;
+    text-decoration: none;
+}
+
+/* ---------- 列表 ---------- */
+.markdown-section ul,
+.markdown-section ol {
+    color: var(--text-primary);
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+.markdown-section li {
+    margin-bottom: 8px;
+}
+
+/* ---------- 底部版权 ---------- */
+.docsify-footer {
+    width: 100%;
+    height: 25px;
+    background-color: var(--bg-primary);
+    position: relative;
+    font-size: .8rem;
+    box-shadow: 0 -10px 10px rgba(0, 0, 0, .1);
+    margin-top: 60px;
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.docsify-footer p {
+    margin: 0;
+    line-height: 25px;
+    display: inline-block;
+    color: var(--text-primary);
+}
+
+.docsify-footer p a {
+    color: var(--accent);
+    transition: all .3s;
+}
+
+.docsify-footer p a:hover {
+    color: var(--accent-hover);
+}
+
+.docsify-footer .right {
+    float: right;
+}
+
+/* ---------- 恋爱计时 ---------- */
+.lovetime {
+    text-align: center;
+    margin: 40px 0 20px;
+    padding: 15px;
+    background: rgba(116, 185, 255, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(116, 185, 255, 0.15);
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+/* ---------- 搜索框 ---------- */
+.sidebar .search {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--bg-primary);
+}
+
+.sidebar .search input {
+    background: var(--bg-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    outline: none;
+    transition: all .3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar .search input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 5px rgba(116, 185, 255, 0.2);
+}
+
+.sidebar .search input::placeholder {
+    color: rgba(159, 178, 191, 0.5);
+}
+
+.sidebar .search .clear-button {
+    color: var(--text-primary);
+}
+
+/* ---------- 搜索结果 ---------- */
+.sidebar .search .results-panel {
+    background: var(--bg-sidebar);
+}
+
+.sidebar .search .matching-post {
+    border-bottom: 1px solid var(--bg-primary);
+}
+
+.sidebar .search .matching-post a {
+    color: var(--text-primary);
+}
+
+.sidebar .search .matching-post a:hover {
+    color: var(--accent);
+}
+
+/* ---------- 标签/徽章 ---------- */
+.markdown-section .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin: 2px;
+}
+
+/* ---------- 响应式 ---------- */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+        transform: translateX(-260px);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .content {
+        left: 0 !important;
+    }
+
+    .markdown-section {
+        padding: 40px 25px 60px;
+    }
+
+    .markdown-section img {
+        max-width: 100%;
+        min-width: auto;
+    }
+
+    .app-nav > ul {
+        margin-left: 15px;
+        flex-wrap: wrap;
+    }
+
+    .app-nav > ul > li > a {
+        padding: 0 8px;
+        font-size: 0.65rem;
+    }
+
+    .sidebar-profile {
+        padding: 20px 15px 15px;
+    }
+
+    .sidebar-profile .sidebar-avatar {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .markdown-section img {
+        max-width: 90%;
+        min-width: 200px;
+    }
+}
+
+/* ---------- Docsify 汉堡菜单图标适配 ---------- */
+.app-nav .app-nav-rl {
+    display: none;
+}
+
+/* ---------- 代码复制按钮 ---------- */
+.docsify-copy-code-button {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    padding: 4px 12px !important;
+    transition: all .3s !important;
+}
+
+.docsify-copy-code-button:hover {
+    background: var(--accent-hover) !important;
+}
+
+/* ---------- 标题锚点 ---------- */
+.markdown-section .anchor {
+    color: var(--accent);
+}
